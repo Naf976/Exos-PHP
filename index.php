@@ -62,10 +62,23 @@
     $age2 = 60;
     $isSenior = ($age2 >= 50);
     if ($isSenior){
-        echo ('Vous êtes d\'âge mûre');
+        echo ('Vous êtes d\'âge mûre <br/>');
     }else{
-        echo ('fiston');
+        echo ('fiston <br/>');
     }
+    ?>
+
+    <!-- LES BOUCLES EN PHP -->
+
+    <!-- Boucles "while" -->
+
+    <?php
+    $martin = ['Martin Luther King', ',king@boss.com', '12349', 35];
+    $nelson = ['Nelson Mandela', 'nel@boss.com', '95475', 70];
+    $louis = ['Louis de Funes', 'louis@boss.com', '93540',80];
+
+    $stars = [$martin, $nelson, $louis];
+    echo $stars[1][2];
     ?>
 
 </body>
