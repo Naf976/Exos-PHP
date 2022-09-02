@@ -21,7 +21,7 @@
         'mail'      => 'sebastienlevievre@exemple.com',
         'titre'     =>  'pâtes',
         'recette'   =>  'Pour commencer, ...',
-        'auth'      =>  false
+        'auth'      => false
     ];
     //  Regroupement des recettes
 
