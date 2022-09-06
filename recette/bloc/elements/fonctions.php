@@ -8,4 +8,13 @@
             echo 'erreur de vérification de l\'authorisation';
         }
     }
+
+    function verification($users){
+        foreach($users as $user){
+            if(isset($user['email']) && isset($user['password']))
+            {
+                
+            }
+        }
+    }
 ?>
