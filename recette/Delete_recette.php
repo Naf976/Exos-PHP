@@ -44,6 +44,7 @@
                     $requeteSql = 'DELETE FROM recettes WHERE recette_id=:id';
                 $prepaSupprimer = $db->prepare($requeteSql);
                 $prepaSupprimer->execute(['id' => $_POST['id']]);
+                echo '<p class="wrong"> La recette vient d\'être supprimée.</p>';
                 }catch(Exception $e){
                     die('Une erreur s\'est produite :'.$e->getMessage());
                 }
