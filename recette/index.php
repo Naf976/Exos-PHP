@@ -37,7 +37,7 @@ session_start(); ?>
         $utilisateursStatement->execute();
         $utilisateurs = $utilisateursStatement->fetchAll();
 
-        echo '<p class="wrong">Nom d\'utilisateurs reçu : ';
+        echo '<p class="wrong">Utilisateurs disponibles : ';
         foreach ($utilisateurs as $utilisateur) {
             echo htmlspecialchars($utilisateur['prenom'] .
                 ' ' . $utilisateur['nom'] . ', ');
