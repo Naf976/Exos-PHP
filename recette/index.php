@@ -69,8 +69,8 @@ session_start(); ?>
                         '<em class="nom">' . htmlspecialchars($recette['auteur']) . '</br>' . '</em>' .
                     '</div>
                      <div class="action">
-                        <a class="modifier" href="Update_recette.php">Modifier</a>
-                        <a class="supprimer" href="Delete_recette.php">Suprimer</a>
+                        <a class="modifier" href="Update_recette.php?id='.$recette['recette_id'].'">Modifier</a>
+                        <a class="supprimer" href="Delete_recette.php?id='.$recette['recette_id'].'">Suprimer</a>
                     </div>';
                 }
             }
