@@ -82,6 +82,22 @@ div.recette{
     text-decoration: none;
     cursor: pointer;
 }
+.action{
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin-bottom: 20px;
+}
+.action .modifier, .action .supprimer{
+    display: inline-block;
+    text-decoration: none;
+    border: solid 1px;
+    padding: 5px;
+}
+.modifier{color: rgb(191, 78, 2);}
+.modifier:hover{background-color: rgb(246, 222, 207);}
+.supprimer{color: red;}
+.supprimer:hover{background-color: rgb(255, 209, 209);}
 /*      FOOTER      */
 footer{
     background-color: rgb(201, 201, 201);

@@ -39,8 +39,8 @@ session_start(); ?>
 
         echo '<p class="wrong">Nom d\'utilisateurs reçu : ';
         foreach ($utilisateurs as $utilisateur) {
-            echo $utilisateur['prenom'] .
-                ' ' . $utilisateur['nom'] . ', ';
+            echo htmlspecialchars($utilisateur['prenom'] .
+                ' ' . $utilisateur['nom'] . ', ');
         }
         echo '</p>';
 
@@ -57,17 +57,21 @@ session_start(); ?>
             }
         }
         if (isset($_SESSION['LOGED_USER'])) {
-            echo '<p class="right">vous êtes connecté ' . $_SESSION['LOGED_USER'] . '</br></p>';
+            echo '<p class="right">vous êtes connecté ' . htmlspecialchars($_SESSION['LOGED_USER']) . '</br></p>';
             echo '<a class="nouvelle_recette" href="ajoutRecette.php">+ Nouvelle recette</a>';
             foreach ($recettes as $recette) {
                 $autorisation = $recette['auth'];
                 if ($autorisation == 1) {
                     echo
                     '<div class="recette">' .
-                        '<h2 class="titre">' . $recette['titre'] . '</br>' . '</h2>' .
-                        '<strong class="recette">' . $recette['recette'] . '</br>' . '</strong>' .
-                        '<em class="nom">' . $recette['auteur'] . '</br>' . '</em>' .
-                        '</div>';
+                        '<h2 class="titre">' . htmlspecialchars($recette['titre'])  . '</br>' . '</h2>' .
+                        '<strong class="recette">' . htmlspecialchars($recette['recette']) . '</br>' . '</strong>' .
+                        '<em class="nom">' . htmlspecialchars($recette['auteur']) . '</br>' . '</em>' .
+                    '</div>
+                     <div class="action">
+                        <a class="modifier" href="Update_recette.php">Modifier</a>
+                        <a class="supprimer" href="Delete_recette.php">Suprimer</a>
+                    </div>';
                 }
             }
         } elseif (!isset($_COOKIE['LOGED_USER'])) {
