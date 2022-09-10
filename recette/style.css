@@ -58,6 +58,30 @@ div.recette{
     padding: 10px 30px;
     text-decoration: none;
 }
+.wrong{
+    display: inline-block;
+    background-color: rgb(255, 179, 179);
+    padding: 5px;
+    width: 100%;
+    border: solid 1px rgb(254, 120, 120);
+    border-radius: 10px;
+}
+.right{
+    display: inline-block;
+    background-color: rgb(183, 255, 179);
+    padding: 5px;
+    width: 100%;
+    border: solid 1px rgb(131, 254, 120);
+    border-radius: 10px;
+}
+.nouvelle_recette{
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: rgba(107, 178, 240, 0.5);
+    border: 1px solid rgb(118, 171, 193);
+    text-decoration: none;
+    cursor: pointer;
+}
 /*      FOOTER      */
 footer{
     background-color: rgb(201, 201, 201);
@@ -90,16 +114,23 @@ footer ul a{
 
 
 /*      CONTACT     */
-main.main_contact{
+main.main_contact, .main_nouvelle_recette{
     width: 650px;
+    color: rgb(81, 137, 187);
 }
-.contactHead{
+.contactHead, .nouvelleRecetteHead{
     font-size: 2em;
 }
-#mail{
+#auteur, #titre, #recette{
+    border: solid 2px rgb(107, 178, 240);
+}
+#mail, #auteur, #titre{
     height: 20px;
 }
-#message{
+#titre{
+    margin-bottom: 10px;
+}
+#message, #recette{
     height: 200px;
     width: 500px;
 }
@@ -108,7 +139,7 @@ main.main_contact{
     margin-top: 5px;
     margin-bottom: 10px;
 }
-#btn_contact{
+#btn_contact, #btn_recette{
     display: inline-block;
     background-color: rgb(107, 178, 240);
     border: none;
@@ -138,3 +169,5 @@ main.main_contact{
 #connection button:hover{
     cursor: pointer;
 }
+
+/*      NOUVELLE RECETTE  */

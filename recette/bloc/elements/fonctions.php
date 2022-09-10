@@ -9,12 +9,4 @@
         }
     }
 
-    function verification($users){
-        foreach($users as $user){
-            if(isset($user['email']) && isset($user['password']))
-            {
-                
-            }
-        }
-    }
 ?>

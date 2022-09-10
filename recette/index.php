@@ -1,3 +1,5 @@
+<?php
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -12,40 +14,70 @@
 <body>
     <!--    Importation des blocks header, variables et fonctions-->
     <?php include_once('bloc/header.php'); ?>
-    <?php include_once('bloc/elements/variables.php'); ?>
-    <?php include_once('bloc/elements/fonctions.php'); ?>
+    <?php include_once('bloc/elements/variables.php');
+    include_once('bloc/elements/fonctions.php');
+    include_once('bloc/elements/users.php') ?>
+
 
     <!--    Début du contenu principale de la page-->
     <main class="conteneur">
         <?php
-        $connected = false;
-            if($connected == false){
-                echo '
+        try {
+            $db = new PDO('mysql:host=localhost;dbname=partage_de_recettes;charset=utf8', 'root', 'root');
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        $recettesQuery = 'SELECT * FROM recettes';
+        $recipesStatement = $db->prepare($recettesQuery);
+        $recipesStatement->execute();
+        $recettes = $recipesStatement->fetchAll();
+
+        $utilisateursQuery = 'SELECT * FROM users';
+        $utilisateursStatement = $db->prepare($utilisateursQuery);
+        $utilisateursStatement->execute();
+        $utilisateurs = $utilisateursStatement->fetchAll();
+
+        echo '<p class="wrong">Nom d\'utilisateurs reçu : ';
+        foreach ($utilisateurs as $utilisateur) {
+            echo $utilisateur['prenom'] .
+                ' ' . $utilisateur['nom'] . ', ';
+        }
+        echo '</p>';
+
+
+        /*  VERIFICATION SI L'EMAIL ET LE MOT DE PASSE EXISTE   */
+        if (isset($_POST['email']) && isset($_POST['password'])) {
+            foreach ($users as $user) {
+                if (
+                    $_POST['email'] == $user['email'] &&
+                    $_POST['password'] == $user['password']
+                ) {
+                    $_SESSION['LOGED_USER'] = $user['prenom'];
+                }
+            }
+        }
+        if (isset($_SESSION['LOGED_USER'])) {
+            echo '<p class="right">vous êtes connecté ' . $_SESSION['LOGED_USER'] . '</br></p>';
+            echo '<a class="nouvelle_recette" href="ajoutRecette.php">+ Nouvelle recette</a>';
+            foreach ($recettes as $recette) {
+                $autorisation = $recette['auth'];
+                if ($autorisation == 1) {
+                    echo
+                    '<div class="recette">' .
+                        '<h2 class="titre">' . $recette['titre'] . '</br>' . '</h2>' .
+                        '<strong class="recette">' . $recette['recette'] . '</br>' . '</strong>' .
+                        '<em class="nom">' . $recette['auteur'] . '</br>' . '</em>' .
+                        '</div>';
+                }
+            }
+        } elseif (!isset($_COOKIE['LOGED_USER'])) {
+            echo '
                 <section class="bonjour">
             <p>Bonjour ! Pour pouvoir accéder aux recettes, il va falloir se connecter !</p>
             <a href="login.php">Se connecter</a>
-        </section>
-                ';
-                return;
-            }elseif($connected == true){
-                foreach($recettes as $recette){
-                    $autorisation = affichage($recette);
-                    if($autorisation == true){
-                        echo 
-                            '<div class="recette">'.
-                                '<h2 class="titre">'.$recette['titre'].'</br>'.'</h2>'.
-                                '<strong class="recette">'.$recette['recette'].'</br>'.'</strong>'.
-                                '<em class="nom">'.$recette['nom'].'</br>'.'</em>'.
-                                '<em class="mail">'.$recette['mail'].'</br>'.'</em>'.
-                            '</div>';
-                    }
-                }
-            }
+        </section>';
+        }
         ?>
-        
-
-        <!--<?php /*
-       */ ?>-->
     </main>;
     <?php include_once('bloc/footer.php'); ?>
 </body>

@@ -1,3 +1,4 @@
+<?php session_start() ;?>
 <!DOCTYPE html>
 <html lang="fr_FR">
 
@@ -17,7 +18,7 @@
         <h1>Se connecter</h1>
         <aside id="connection">
             <form method="POST" action="index.php">
-                <input type="email" id="mail" name="mail" placeholder="adresse mail"></br>
+                <input type="email" id="mail" name="email" placeholder="adresse mail"></br>
                 <input type="password" id="password" name="password" placeholder="Mot de passe"></br>
                 <button type="submit">Se connecter</button>
             </form>
